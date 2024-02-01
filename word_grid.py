@@ -41,14 +41,24 @@ class WordGrid:
 		for word in words:
 			placed = False
 			for _ in range(100):
+				dirs = [1, 2]
+				if len(word) > self.height:
+					dirs.remove(2)
+				if len(word) > self.width:
+					dirs.remove(1)
+				if not dirs:
+					break
+
+				if len(dirs) == 2:
+					dirs.append(3)
 				# chooses a random direction
-				dir = random.choice([1, 2, 3])	# 1: HORIZONTAL, 2: VERTICAL, 3: DIAGONAL
+				dir = random.choice(dirs)	# 1: HORIZONTAL, 2: VERTICAL, 3: DIAGONAL
 				x_offset = dir % 2
 				y_offset = dir // 2
 
 				# random x and y positions of the first letter of the current word
-				x = random.randint(0, self.width - 1 - len(word)*x_offset)
-				y = random.randint(0, self.height - 1 - len(word)*y_offset)
+				x = random.randint(0, self.width - 1 - (len(word)-1)*x_offset)
+				y = random.randint(0, self.height - 1 - (len(word)-1)*y_offset)
 
 				if self._is_placeable(word, x, y, x_offset, y_offset):
 					self._place_word(word, x, y, x_offset, y_offset)
@@ -57,27 +67,34 @@ class WordGrid:
 
 			if not placed:
 				print(f"Warning: Could not place {word}")
+				words.remove(word)
+
+		return words
 					
 	
 
 	# sets a word in a position and with a particular direction
 	def _place_word(self, word, x, y, x_offset, y_offset):
 		for i, w in enumerate(word):
-			self.grid[x+i*x_offset, y+i*y_offset] = w
-			self.available[x+i*x_offset, y+i*y_offset] = False
+			this_x, this_y = x + i*x_offset, y + i*y_offset
+			self.grid[this_y, this_x] = w
+			self.available[this_y, this_x] = False
 	
 	# checks if a word can be placed in a position and with a particular direction
 	def _is_placeable(self, word, x, y, x_offset, y_offset):
 		for i, w in enumerate(word):
 			this_x, this_y = x + i*x_offset, y + i*y_offset
-			if not self.available[this_x, this_y] and not self.grid[this_x, this_y] == w:
-				return False
+			if not self.available[this_y, this_x]:
+				if not self.grid[this_y, this_x] == w:
+					return False
 
 		return True
 
 
 	# prints the grid on the terminal
 	def print(self, border=False):
+
+
 		if border:
 			print(f"{bcolors.BEG}┌" + ("─"*(2*(self.width)+1)) + f"┐{bcolors.ENDC}" )
 		for y in range(self.height):
@@ -91,11 +108,12 @@ class WordGrid:
 		if border:
 			print(f"{bcolors.BEG}└" + ("─"*(2*(self.width)+1)) + f"┘{bcolors.ENDC}" )
 
+
 	def _print_letter(self, x, y):
-		if self.available[x,y]:
-			print(self.grid[x, y], end=" ")
+		if self.available[y, x]:
+			print(self.grid[y, x], end=" ")
 		else:
-			print(f"{bcolors.BEG}{self.grid[x, y]}{bcolors.ENDC}", end=" ")
+			print(f"{bcolors.BEG}{self.grid[y, x]}{bcolors.ENDC}", end=" ")
 
 
 class bcolors:
