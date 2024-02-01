@@ -17,7 +17,7 @@ Edelwild
 Eichel
 Eisenhammer
 Erinnerung
-Feierpfeil
+Feuerpfeil
 Feuerstein
 Flederbeißer
 Fuchs
@@ -29,7 +29,7 @@ Hauer
 Heugabel
 Himmelswachturm
 Holzpfeil
-Hozbündel
+Holzbündel
 Hyliasee
 Hyrule
 Hyrulegras
