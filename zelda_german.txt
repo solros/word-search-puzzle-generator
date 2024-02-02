@@ -53,6 +53,7 @@ Prinzessin
 Reiseschild
 Reiseschwert
 Röstapfel
+Rubin
 Rüstling
 Rüstung
 Saphir
@@ -73,6 +74,7 @@ Spurtkröte
 Spurtling
 Steinsalz
 Tempel
+Titan
 Topas
 Verheerung
 Wimterwams
