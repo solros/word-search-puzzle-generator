@@ -41,8 +41,6 @@ Also, by default casing will be as given in the text file. Unoccupied fields wil
 
 ```
 % python puzzle.py -f zelda_german.txt
-Wörter
-1. Soldatenschild | 2. Hyliasee | 3. Schleichling | 4. Feuerstein | 5. Ganon | 6. Schleichschnecke | 7. Prinzessin | 8. Eichel | 9. Rüstung | 10. Zahnrad |
 G P c S c h l e i c h s c h n e c k e X
 O g w E g l P r i n z e s s i n k Y h I
 t V e B r B f v f j J u k i m o P j r H
@@ -63,14 +61,16 @@ c Q K C r K m j i m h F h d k J g t x w
 p l b o G p a E v n i X B e e h p h R Y
 v K f d m a F W m L k H t O J V i o w b
 z v O n d z r v r c u F W n l n i A k N
+
+Wörter
+1. Soldatenschild | 2. Hyliasee | 3. Schleichling | 4. Feuerstein | 5. Ganon | 6. Schleichschnecke | 7. Prinzessin | 8. Eichel | 9. Rüstung | 10. Zahnrad |
+
 ```
 
 Create 10x10 puzzle with 5 words, all uppercase:
 
 ```
 % python puzzle.py -f zelda_german.txt --width 10 --height 10 -n5 -u
-Wörter
-1. KÖNIG | 2. BOKBOGEN | 3. LINK | 4. GRILLWILD | 5. SCHREIN |
 G D J P W K U T P K
 R B D R T S Q C Z S
 I O S F L I N K H J
@@ -81,6 +81,9 @@ I G E T T S K Q N A
 L E I N Y Z C O F V
 D N N K I D F Q G Y
 M V U M N O K U E T
+
+Wörter
+1. KÖNIG | 2. BOKBOGEN | 3. LINK | 4. GRILLWILD | 5. SCHREIN |
 ```
 
 By default, the script places the words horizontally, vertically and diagonally. This can be changed using the `--dirs` argument. This is bit-vector: `1*horizontal + 2*vertical + 4*diagonal`.
@@ -93,8 +96,6 @@ E.g.:
 
 ```
 % python puzzle.py -f zelda_german.txt --width 10 --height 10 -n5 -d 3
-Wörter
-1. Topaz | 2. Ganon | 3. Wächter | 4. Schatz | 5. Erinnerung |
 S n T H G T X e g E
 G W k q a T r N M r
 k ä J G n o U S N i
@@ -105,6 +106,9 @@ w e B d q p o t S r
 b r X X d H V z r u
 d j m Q h y i B m n
 E V T g S p I k h g
+
+Wörter
+1. Topaz | 2. Ganon | 3. Wächter | 4. Schatz | 5. Erinnerung |
 ```
 
 # License
