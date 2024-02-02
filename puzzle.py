@@ -13,10 +13,11 @@ parser.add_argument('-n', '--number', type=int, default=10, help="Number of word
 parser.add_argument('-b', '--borders', action="store_true", help="Print borders")
 parser.add_argument('--wordslocalized', type=str, default="Wörter", help="Words in your language, default: Wörter (German)")
 parser.add_argument('--spacer', type=str, default=" ", help="Spacer between letters")
+parser.add_argument('-d', '--dirs', type=int, default=7, help="Allow directions, bit vector: 1*horizontal + 2*vertical + 4*diagonal")
 
 args = parser.parse_args()
 
-def main(cheated=False, words_file=None, width=20, height=20, n=10, borders=False, upper=False, lower=False, spacer=" "):
+def main(cheated=False, words_file=None, width=20, height=20, n=10, borders=False, upper=False, lower=False, directions=7, spacer=" "):
 
 	if upper and lower:
 		print("Cannot do both upper and lower")
@@ -40,7 +41,7 @@ def main(cheated=False, words_file=None, width=20, height=20, n=10, borders=Fals
 
 	grid.cheated = cheated
 
-	words = grid.add_words(words)
+	words = grid.add_words(words, directions=directions)
 
 	# printing the words to find
 	print(args.wordslocalized)
@@ -53,4 +54,4 @@ def main(cheated=False, words_file=None, width=20, height=20, n=10, borders=Fals
 
 
 if __name__ == "__main__":
-	main(cheated=args.cheated, words_file=args.file, width=args.width, height=args.height, n=args.number, borders=args.borders, upper=args.upper, lower=args.lower, spacer=args.spacer)
+	main(cheated=args.cheated, words_file=args.file, width=args.width, height=args.height, n=args.number, borders=args.borders, upper=args.upper, lower=args.lower, directions=args.dirs, spacer=args.spacer)

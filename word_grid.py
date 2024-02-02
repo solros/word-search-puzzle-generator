@@ -35,23 +35,28 @@ class WordGrid:
 			return l.upper()
 		return l.lower()
 
-	def add_words(self, words:list):
+	def add_words(self, words:list, directions=7):
 		remove_list = []
+
+		available_dirs = []
+		for i in range(3):
+			if directions%2:
+				available_dirs.append(i+1)
+			directions //= 2
+
 		for word in words:
 			placed = False
+			rem_dirs = set()
+			if len(word) > self.height:
+				rem_dirs = rem_dirs.union([2, 3])
+			if len(word) > self.width:
+				rem_dirs = rem_dirs.union([1, 3])
+			dirs = list(set(available_dirs) - rem_dirs)
+			if not dirs:
+				print("warning: no dirs left")
+				continue
+
 			for _ in range(100):
-				dirs = [1, 2]
-				if len(word) > self.height:
-					dirs.remove(2)
-				if len(word) > self.width:
-					dirs.remove(1)
-				if not dirs:
-					print("warning: no dirs left")
-					break
-
-				if len(dirs) == 2:
-					dirs.append(3)
-
 				# chooses a random direction
 				dir = random.choice(dirs)	# 1: HORIZONTAL, 2: VERTICAL, 3: DIAGONAL
 				x_offset = dir % 2
