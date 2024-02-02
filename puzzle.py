@@ -43,14 +43,13 @@ def main(solution=False, words_file=None, width=20, height=20, n=10, borders=Fal
 
 	words = grid.add_words(words, solution=solution, directions=directions)
 
+	grid.print(borders, spacer)
+	print()
 	# printing the words to find
 	print(args.wordslocalized)
-
 	for count, word in enumerate(words):
 		print(f"{count + 1}. {word}", end=" | ")
 	print()
-
-	grid.print(borders, spacer)
 
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
