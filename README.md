@@ -31,6 +31,8 @@ options:
                         Words in your language, default: Wörter (German)
   --spacer SPACER       Spacer between letters
 
+```
+
 ## Examples:
 
 Create search puzzle with Zelda words:
