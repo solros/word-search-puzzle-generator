@@ -10,13 +10,14 @@ parser.add_argument("--height", type=int, default=20, help="Sets a custom grid h
 parser.add_argument('-u', '--upper', action="store_true", help="All upper-case")
 parser.add_argument('-l', '--lower', action="store_true", help="All lower-case")
 parser.add_argument('-n', '--number', type=int, default=10, help="Number of words to hide")
-parser.add_argument('-b', '--borders', action="store_true", help="Add border")
+parser.add_argument('-b', '--borders', action="store_true", help="Print borders")
 parser.add_argument('--header', action="store_true", help="Print header")
 parser.add_argument('--wordslocalized', type=str, default="Wörter", help="Words in your language, default: Wörter (German)")
+parser.add_argument('--spacer', type=str, default=" ", help="Spacer between letters")
 
 args = parser.parse_args()
 
-def main(cheated=False, words_file=None, width=20, height=20, n=10, header=False, borders=False, upper=False, lower=False):
+def main(cheated=False, words_file=None, width=20, height=20, n=10, header=False, borders=False, upper=False, lower=False, spacer=" "):
 
 	if upper and lower:
 		print("Cannot do both upper and lower")
@@ -54,8 +55,8 @@ def main(cheated=False, words_file=None, width=20, height=20, n=10, header=False
 		print(f"{count + 1}. {word}", end=" | ")
 	print()
 
-	grid.print(borders)
+	grid.print(borders, spacer)
 
 
 if __name__ == "__main__":
-	main(cheated=args.cheated, words_file=args.file, width=args.width, height=args.height, n=args.number, header=args.header, borders=args.borders, upper=args.upper, lower=args.lower)
+	main(cheated=args.cheated, words_file=args.file, width=args.width, height=args.height, n=args.number, header=args.header, borders=args.borders, upper=args.upper, lower=args.lower, spacer=args.spacer)
